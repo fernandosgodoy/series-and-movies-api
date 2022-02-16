@@ -11,4 +11,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MoviesCollection.BusinessApp.Dtos\MoviesCollection.BusinessApp.Dtos.csproj" />
+    <ProjectReference Include="..\MoviesCollection.BusinessApp\MoviesCollection.BusinessApp.csproj" />
+    <ProjectReference Include="..\MoviesCollection.EFPersistence\MoviesCollection.EFPersistence.csproj" />
+    <ProjectReference Include="..\MoviesCollection.Entities\MoviesCollection.Entities.csproj" />
+    <ProjectReference Include="..\MoviesCollection.Infra.Ioc\MoviesCollection.Infra.Ioc.csproj" />
+  </ItemGroup>
+
 </Project>

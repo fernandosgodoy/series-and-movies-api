@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoviesCollection.BusinessApp.Dtos\MoviesCollection.BusinessApp.Dtos.csproj" />
+    <ProjectReference Include="..\MoviesCollection.EFPersistence\MoviesCollection.EFPersistence.csproj" />
+    <ProjectReference Include="..\MoviesCollection.Entities\MoviesCollection.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
