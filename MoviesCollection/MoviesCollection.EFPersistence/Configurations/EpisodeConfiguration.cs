@@ -38,6 +38,12 @@ namespace MoviesCollection.EFPersistence.Configurations
                 .HasMaxLength(10)
                 .IsRequired(true);
 
+            //builder.Entity<Movie>()
+            //    .HasOne(m => m.mo)
+            //    .WithMany(o => o.ObjectiveHistories)
+            //    .HasForeignKey(o => o.ObjectiveId)
+            //    .OnDelete(DeleteBehavior.NoAction);
+
         }
     }
 }
