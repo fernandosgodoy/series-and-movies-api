@@ -7,6 +7,10 @@ namespace MoviesCollection.EFPersistence.Context
     public class SeriesMovieContext
         : DbContext
     {
+        public DbSet<Actor> Actors { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Cast> Casts { get; set; }
+        public DbSet<Episode> Episodes { get; set; }
 
         public SeriesMovieContext(DbContextOptions dbContextOptions)
             : base(dbContextOptions) { }
