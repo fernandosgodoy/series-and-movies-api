@@ -10,25 +10,19 @@ namespace MoviesCollection.EFPersistence.Configurations
         public void Configure(EntityTypeBuilder<Cast> builder)
         {
             builder.ToTable("casts");
-            builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id)
-                .HasColumnName("id")
+            builder.Property(x => x.ActorId)
+                .HasColumnName("actor_id")
                 .IsRequired(true);
-
-            builder.Property(x => x.CreatedAt)
-                .HasColumnName("created_at")
-                .IsRequired(true);
-
-            builder.Property(x => x.Deleted)
-                .HasColumnName("deleted")
-                .IsRequired(false);
 
             builder.Property(x => x.Role)
                 .HasColumnName("name")
                 .HasMaxLength(50)
                 .IsRequired(true);
 
+            builder.Property(x => x.MovieId)
+                .HasColumnName("movie_id")
+                .IsRequired(true);
         }
     }
 }

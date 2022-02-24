@@ -39,7 +39,7 @@ namespace MoviesCollection.EFPersistence.Configurations
                 .IsRequired(false);
 
             builder.Property(x => x.ImageUrl)
-                .HasColumnName("iamge_url")
+                .HasColumnName("image_url")
                 .HasMaxLength(255)
                 .IsRequired(true);
 

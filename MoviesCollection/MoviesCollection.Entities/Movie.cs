@@ -19,6 +19,6 @@ namespace MoviesCollection.Entities
         public DateTime ReleaseDate { get; set; }
         public string Synopsis { get; set; }
         public ICollection<Cast> Casts { get; set; }
-
+        public ICollection<Episode> Episodes { get; set; }
     }
 }
