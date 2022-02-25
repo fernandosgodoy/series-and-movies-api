@@ -31,7 +31,7 @@ namespace MoviesCollection.Api
 
             services.AddDbContext<SeriesMovieContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("SeriesMovieContext"));
+                options.UseSqlServer(Configuration.GetConnectionString("MoviesAppConnection"));
             });
 
             services.AddControllers();
