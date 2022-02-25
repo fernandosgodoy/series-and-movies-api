@@ -24,7 +24,7 @@ namespace MoviesCollection.EFPersistence.Repositories
             await this.context.SaveChangesAsync();
         }
 
-        public async Task DeleteById(TEntity entity)
+        public async Task Delete(TEntity entity)
         {
             this.context.Set<TEntity>().RemoveRange(entity);
             await this.context.SaveChangesAsync();

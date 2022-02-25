@@ -12,7 +12,7 @@ namespace MoviesCollection.EFPersistence.Repositories
         Task<TEntity> GetById(int id);
         Task Add(TEntity entity);
         Task Update(TEntity entity);
-        Task DeleteById(TEntity entity);
+        Task Delete(TEntity entity);
 
     }
 }
