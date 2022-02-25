@@ -7,11 +7,9 @@ namespace MoviesCollection.Entities
     public class Cast
     {
 
-        [Key, Column(Order = 0)]
         [Required]
         public int ActorId { get; set; }
 
-        [Key, Column(Order = 1)]
         [Required]
         public int MovieId { get; set; }
 
