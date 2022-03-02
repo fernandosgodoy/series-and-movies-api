@@ -9,7 +9,7 @@ namespace MoviesCollection.Entities
     public class Actor
         : EntityBase
     {
-
+        public Actor() { }
         public Actor(ActorDto actorDto)
         {
             if (actorDto == null) 
@@ -19,7 +19,6 @@ namespace MoviesCollection.Entities
                 this.Id = actorDto.Id;
 
             this.Name = actorDto.Name;
-            this.CreatedAt = actorDto.CreatedAt;
             this.Birthdate = actorDto.Birthdate;
             this.ImageUrl = actorDto.ImageUrl;
             this.Biography = actorDto.Biography;

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MoviesCollection.EFPersistence.Context;
+using MoviesCollection.Infra.Ioc.ApplicationScopeExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,9 @@ namespace MoviesCollection.Api
             {
                 options.UseSqlServer(Configuration.GetConnectionString("MoviesAppConnection"));
             });
+
+            services.RegisterServiceDependencies();
+            services.RegisterRepositoriesDependencies();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

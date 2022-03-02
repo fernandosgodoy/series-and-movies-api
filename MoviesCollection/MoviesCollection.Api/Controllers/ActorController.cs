@@ -53,7 +53,7 @@ namespace MoviesCollection.Api.Controllers
             }
         }
 
-        [HttpPut("id:int")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateAsync([FromRoute]int id, [FromBody] ActorDto actorDto)
         {
             try
@@ -70,7 +70,7 @@ namespace MoviesCollection.Api.Controllers
             }
         }
 
-        [HttpDelete("id:int")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
             try
