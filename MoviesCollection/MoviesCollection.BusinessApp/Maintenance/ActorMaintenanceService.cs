@@ -1,50 +1,52 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MoviesCollection.BusinessApp.Dtos.Actors;
 using MoviesCollection.BusinessApp.Dtos.Messages;
-using MoviesCollection.EFPersistence.Context;
 using MoviesCollection.EFPersistence.Repositories;
 using MoviesCollection.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MoviesCollection.BusinessApp.Maintenance
 {
     public class ActorMaintenanceService
     {
-        private readonly SeriesMovieContext context;
         private readonly ActorRepository actorRepository;
 
-        public ActorMaintenanceService(SeriesMovieContext db,
-            ActorRepository actorRepo)
+        public ActorMaintenanceService(ActorRepository actorRepo)
         {
-            this.context = db;
             this.actorRepository = actorRepo;
         }
 
-        public async Task<IEnumerable<Actor>> ListAllConfigurations()
+        public async Task<IEnumerable<ActorDto>> ListAllConfigurations()
         {
             return await this.actorRepository.All
+                .Select(Actor.ToFullDto)
                 .ToArrayAsync();
         }
 
-        public async Task<Actor> GetConfigurationById(int id)
+        public async Task<ActorDto> GetConfigurationById(int id)
         {
-            return await actorRepository.GetById(id);
+            return await actorRepository.All
+                .Where(a => a.Id == id)
+                .Select(Actor.ToFullDto)
+                .SingleOrDefaultAsync();
         }
 
-        public async Task<Result> InsertConfiguration(Actor actorEntry)
+        public async Task<Result> InsertConfiguration(ActorDto actorEntry)
         {
             var result = new Result();
-            await this.actorRepository.Add(actorEntry);
+            await this.actorRepository.Add(new Actor(actorEntry));
             result.InsertedId = actorEntry.Id;
             result.Success = (result.InsertedId > 0);
             return result;
         }
 
-        public async Task<Result> UpdateConfiguration(int id, Actor actorEntry)
+        public async Task<Result> UpdateConfiguration(int id, ActorDto actorEntry)
         {
             var result = new Result();
             actorEntry.Id = id; 
-            await this.actorRepository.Update(actorEntry);
+            await this.actorRepository.Update(new Actor(actorEntry));
             result.Success = true;
             return result;
         }
