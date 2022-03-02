@@ -18,14 +18,14 @@ namespace MoviesCollection.BusinessApp.Maintenance
             this.actorRepository = actorRepo;
         }
 
-        public async Task<IEnumerable<ActorDto>> ListAllConfigurations()
+        public async Task<IEnumerable<ActorDto>> ListAllAsync()
         {
             return await this.actorRepository.All
                 .Select(Actor.ToFullDto)
                 .ToArrayAsync();
         }
 
-        public async Task<ActorDto> GetConfigurationById(int id)
+        public async Task<ActorDto> GetByIdAsync(int id)
         {
             return await actorRepository.All
                 .Where(a => a.Id == id)
@@ -33,7 +33,7 @@ namespace MoviesCollection.BusinessApp.Maintenance
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<Result> InsertConfiguration(ActorDto actorEntry)
+        public async Task<Result> InsertAsync(ActorDto actorEntry)
         {
             var result = new Result();
             await this.actorRepository.Add(new Actor(actorEntry));
@@ -42,7 +42,7 @@ namespace MoviesCollection.BusinessApp.Maintenance
             return result;
         }
 
-        public async Task<Result> UpdateConfiguration(int id, ActorDto actorEntry)
+        public async Task<Result> UpdateAsync(int id, ActorDto actorEntry)
         {
             var result = new Result();
             actorEntry.Id = id; 
@@ -51,7 +51,7 @@ namespace MoviesCollection.BusinessApp.Maintenance
             return result;
         }
 
-        public async Task<Result> DeleteConfiguration(int id)
+        public async Task<Result> DeleteAsync(int id)
         {
             var result = new Result();
             var actor = await this.actorRepository.GetById(id);
