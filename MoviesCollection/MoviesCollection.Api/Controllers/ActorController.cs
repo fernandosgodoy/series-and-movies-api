@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MoviesCollection.BusinessApp.Dtos.Actors;
 using MoviesCollection.BusinessApp.Maintenance;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MoviesCollection.Api.Controllers
@@ -41,11 +40,16 @@ namespace MoviesCollection.Api.Controllers
         {
             try
             {
-                var result = await this.actorMaintenanceService.InsertAsync(actorDto);
-                if (result.Success)
-                    return Ok(result);
+                if (ModelState.IsValid)
+                {
+                    var result = await this.actorMaintenanceService.InsertAsync(actorDto);
+                    if (result.Success)
+                        return Ok(result);
+                    else
+                        return BadRequest(result);
+                }
                 else
-                    return BadRequest(result);
+                    return BadRequest();
             }
             catch 
             {
@@ -58,11 +62,16 @@ namespace MoviesCollection.Api.Controllers
         {
             try
             {
-                var result = await this.actorMaintenanceService.UpdateAsync(id, actorDto);
-                if (result.Success)
-                    return Ok(result);
+                if (ModelState.IsValid)
+                {
+                    var result = await this.actorMaintenanceService.UpdateAsync(id, actorDto);
+                    if (result.Success)
+                        return Ok(result);
+                    else
+                        return BadRequest(result);
+                }
                 else
-                    return BadRequest(result);
+                    return BadRequest();
             }
             catch
             {

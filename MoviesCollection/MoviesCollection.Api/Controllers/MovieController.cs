@@ -41,11 +41,16 @@ namespace MoviesCollection.Api.Controllers
         {
             try
             {
-                var result = await this.movieMaintenanceService.InsertAsync(MovieDto);
-                if (result.Success)
-                    return Ok(result);
+                if (ModelState.IsValid)
+                {
+                    var result = await this.movieMaintenanceService.InsertAsync(MovieDto);
+                    if (result.Success)
+                        return Ok(result);
+                    else
+                        return BadRequest(result);
+                }
                 else
-                    return BadRequest(result);
+                    return BadRequest();
             }
             catch
             {
@@ -58,11 +63,16 @@ namespace MoviesCollection.Api.Controllers
         {
             try
             {
-                var result = await this.movieMaintenanceService.UpdateAsync(id, MovieDto);
-                if (result.Success)
-                    return Ok(result);
+                if (ModelState.IsValid)
+                { 
+                    var result = await this.movieMaintenanceService.UpdateAsync(id, MovieDto);
+                    if (result.Success)
+                        return Ok(result);
+                    else
+                        return BadRequest(result);
+                }
                 else
-                    return BadRequest(result);
+                    return BadRequest();
             }
             catch
             {
