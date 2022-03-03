@@ -16,6 +16,7 @@ namespace MoviesCollection.BusinessApp.Dtos.Movies
         public string Storyline { get; set; }
         [Required]
         public MovieLanguage Languages { get; set; }
+        [Required]
         public DateTime ReleaseDate { get; set; }
         public DateTime CreatedAt { get; set; }
         [Required]
