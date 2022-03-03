@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace MoviesCollection.BusinessApp.Maintenance
 {
     public class ActorMaintenanceService
+        : IApplicationMaintenance<ActorDto>
     {
         private readonly ActorRepository actorRepository;
 
