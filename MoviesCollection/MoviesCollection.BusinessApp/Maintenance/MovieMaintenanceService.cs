@@ -1,7 +1,10 @@
-﻿using MoviesCollection.BusinessApp.Dtos.Messages;
+﻿using Microsoft.EntityFrameworkCore;
+using MoviesCollection.BusinessApp.Dtos.Messages;
 using MoviesCollection.BusinessApp.Dtos.Movies;
 using MoviesCollection.EFPersistence.Repositories;
+using MoviesCollection.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MoviesCollection.BusinessApp.Maintenance
@@ -17,29 +20,57 @@ namespace MoviesCollection.BusinessApp.Maintenance
             this.movieRepository = movieRepo;
         }
 
-        public Task<Result> DeleteAsync(int id)
+        public async Task<Result> DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var result = new Result();
+            var entity = await this.movieRepository.All
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
+
+            if (entity == null)
+            {
+                result.Messages.Add("Not found.");
+                return result;
+            }
+
+            await this.movieRepository.Delete(entity);
+            result.Success = true;
+            return result;
         }
 
-        public Task<MovieDto> GetByIdAsync(int id)
+        public async Task<MovieDto> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await this.movieRepository.All
+                .Where(x => x.Id == id)
+                .Select(Movie.ToFullDto)
+                .SingleOrDefaultAsync();
         }
 
-        public Task<Result> InsertAsync(MovieDto dtoEntry)
+        public async Task<Result> InsertAsync(MovieDto dtoEntry)
         {
-            throw new System.NotImplementedException();
+            var result = new Result();
+            var entity = new Movie(dtoEntry);
+            await this.movieRepository.Add(entity);
+            result.InsertedId = entity.Id;
+            result.Success = (entity.Id > 0);
+            return result;
         }
 
-        public Task<IEnumerable<MovieDto>> ListAllAsync()
+        public async Task<IEnumerable<MovieDto>> ListAllAsync()
         {
-            throw new System.NotImplementedException();
+            return await this.movieRepository.All
+                .Select(Movie.ToFullDto)
+                .ToListAsync();
         }
 
-        public Task<Result> UpdateAsync(int id, MovieDto dtoEntry)
+        public async Task<Result> UpdateAsync(int id, MovieDto dtoEntry)
         {
-            throw new System.NotImplementedException();
+            var result = new Result();
+            var entity = new Movie(dtoEntry);
+            entity.Id = id;
+            await this.movieRepository.Update(entity);
+            result.Success = true;
+            return result;
         }
     }
 }
