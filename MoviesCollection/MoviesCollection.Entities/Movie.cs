@@ -16,7 +16,7 @@ namespace MoviesCollection.Entities
             this.Title = movieDto.Title;
             this.CoverUrl = movieDto.CoverUrl;
             this.Storyline = movieDto.Storyline;
-            this.Languages = movieDto.Languages;
+            this.Languages = (int)movieDto.Languages;
             this.Synopsis = movieDto.Synopsis;
             this.ReleaseDate = movieDto.ReleaseDate;    
         }
@@ -41,7 +41,7 @@ namespace MoviesCollection.Entities
                 Title = mv.Title,
                 CoverUrl = mv.CoverUrl,
                 Storyline = mv.Storyline,
-                Languages= mv.Languages,
+                Languages = (MovieLanguage)mv.Languages,
                 ReleaseDate = mv.ReleaseDate,
                 CreatedAt = mv.CreatedAt
             };
