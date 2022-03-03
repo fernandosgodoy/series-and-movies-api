@@ -9,6 +9,7 @@ namespace MoviesCollection.Infra.Ioc.ApplicationScopeExtensions
         public static void RegisterServiceDependencies(this IServiceCollection service)
         {
             service.AddScoped<ActorMaintenanceService>();
+            service.AddScoped<MovieMaintenanceService>();
         }
 
     }
