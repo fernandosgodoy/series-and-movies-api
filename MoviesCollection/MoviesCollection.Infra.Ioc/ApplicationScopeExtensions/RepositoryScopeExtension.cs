@@ -9,6 +9,7 @@ namespace MoviesCollection.Infra.Ioc.ApplicationScopeExtensions
         {
             service.AddScoped<ActorRepository>();
             service.AddScoped<MovieRepository>();
+            service.AddScoped<EpisodeRepository>();
         }
     }
 }
